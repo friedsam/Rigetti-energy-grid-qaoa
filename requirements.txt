@@ -1,0 +1,12 @@
+numpy
+scipy
+pandas
+matplotlib
+networkx
+jupyterlab
+ipykernel
+python-louvain
+pyquil
+mitiq
+tqdm
+pyarrow

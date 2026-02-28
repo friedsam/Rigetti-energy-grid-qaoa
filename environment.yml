@@ -1,0 +1,23 @@
+name: energy-grid-qaoa
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - scipy
+  - pandas
+  - matplotlib
+  - networkx
+  - jupyterlab
+  - ipykernel
+  - pyarrow
+  - pip:
+      # Community detection (Louvain)
+      - python-louvain
+      # Rigetti SDK (quantum part)
+      - pyquil
+      # Optional (error mitigation)
+      - mitiq
+      # Optional helpers
+      - tqdm

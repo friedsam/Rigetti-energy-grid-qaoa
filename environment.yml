@@ -13,6 +13,8 @@ dependencies:
   - ipykernel
   - pyarrow
   - pytest
+  - qiskit
+  - qiskit-aer
   - pip:
       # Community detection (Louvain)
       - python-louvain
@@ -24,3 +26,5 @@ dependencies:
       - mitiq
       # Optional helpers
       - tqdm
+      # qiskit-rigetti
+      - qiskit-rigetti

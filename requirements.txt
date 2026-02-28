@@ -12,3 +12,6 @@ mitiq
 tqdm
 pyarrow
 pytest
+qiskit
+qiskit-aer
+qiskit-rigetti

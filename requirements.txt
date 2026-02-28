@@ -7,6 +7,8 @@ jupyterlab
 ipykernel
 python-louvain
 pyquil
+qiskit
 mitiq
 tqdm
 pyarrow
+pytest

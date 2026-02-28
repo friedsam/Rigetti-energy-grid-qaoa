@@ -12,11 +12,14 @@ dependencies:
   - jupyterlab
   - ipykernel
   - pyarrow
+  - pytest
   - pip:
       # Community detection (Louvain)
       - python-louvain
       # Rigetti SDK (quantum part)
       - pyquil
+      # QAOA circuit and statevector simulation
+      - qiskit
       # Optional (error mitigation)
       - mitiq
       # Optional helpers

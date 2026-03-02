@@ -126,6 +126,8 @@ def build_standard_qaoa_preconditioned_graph(
     partition_strategy: str = "recursive_spectral_kl",
     max_light_cone_size: int | None = None,
     min_abs_weight: float = 1e-6,
+    shots: int=0,
+    use_pcut: bool = False,
     error_model: str = "ideal",
     error_model_specs_path: str = "Ankaa-3_device_specs.csv",
     error_model_layout_seed: int = 0,
@@ -201,16 +203,67 @@ def build_standard_qaoa_preconditioned_graph(
                 specs_path=error_model_specs_path,
                 layout_seed=error_model_layout_seed + block_index,
             )
+            n = len(cone_nodes)
+
+            if shots and shots > 0:
+                # Finite-K (shot-based) estimate of <Zi Zj> from sampled bitstrings.
+                # Uses little-endian bit convention (bit 0 is least-significant), matching typical basis indexing.
+                rng = np.random.default_rng(local_seed + 9973 * block_index)
+                idx = rng.choice(len(probabilities), size=int(shots), replace=True, p=probabilities)
+
+                # bits: [K, n] where bits[:, q] is qubit-q measurement (0/1)
+                bits = ((idx[:, None] >> np.arange(n)) & 1).astype(np.int8)
+
+                # spins: map 0->+1, 1->-1
+                S = (1 - 2 * bits).astype(np.float64)  # shape [K, n]
+
+                correlations = (S.T @ S) / float(len(idx))  # shape [n, n]
+            else:
+                # Exact expectation from full probability vector (current behavior).
+                spins = basis_spins(n)  # shape [2^n, n]
+                correlations = spins.T @ (spins * probabilities[:, None])
+
+            cached = (node_to_index, correlations)
+            cached_correlations[cone_nodes] = cached
+
+            """
             spins = basis_spins(len(cone_nodes))
             correlations = spins.T @ (spins * probabilities[:, None])
             cached = (node_to_index, correlations)
             cached_correlations[cone_nodes] = cached
+            """
             light_cone_evaluations += 1
 
         node_to_index, correlations = cached
         for left_index in range(len(block_nodes)):
             u = int(block_nodes[left_index])
             for right_index in range(left_index + 1, len(block_nodes)):
+                v = int(block_nodes[right_index])
+                pair = (u, v) if u < v else (v, u)
+
+                # CONTROL: only precondition real edges (same topology for both modes)
+                if not graph.has_edge(u, v):
+                    continue
+
+                candidate_pairs.add(pair)
+
+                correlation = float(correlations[node_to_index[u], node_to_index[v]])
+                correlation = float(np.clip(correlation, -1.0, 1.0))
+
+                if use_pcut:
+                    # MaxCut-aligned signal: probability edge is cut
+                    p_cut = 0.5 * (1.0 - correlation)
+                    w0 = float(graph[u][v].get("weight", 1.0))
+                    weight = w0 * p_cut
+                else:
+                    weight = -correlation
+
+                if abs(weight) <= max(min_abs_weight, EPS):
+                    continue
+
+                weight_totals[pair] = weight_totals.get(pair, 0.0) + weight
+                weight_counts[pair] = weight_counts.get(pair, 0) + 1
+                """
                 v = int(block_nodes[right_index])
                 pair = (u, v) if u < v else (v, u)
                 candidate_pairs.add(pair)
@@ -220,6 +273,8 @@ def build_standard_qaoa_preconditioned_graph(
                     continue
                 weight_totals[pair] = weight_totals.get(pair, 0.0) + weight
                 weight_counts[pair] = weight_counts.get(pair, 0) + 1
+                """
+
 
     preconditioned_graph = nx.Graph()
     preconditioned_graph.add_nodes_from(int(node) for node in graph.nodes())
@@ -252,6 +307,8 @@ def solve_graph_quantum_preconditioned(
         seed=config.seed,
         max_block_size=config.max_block_size,
         partition_strategy=config.partition_strategy,
+        shots=config.preconditioner_shots,
+        use_pcut=config.preconditioner_use_pcut,
         max_light_cone_size=config.max_light_cone_size,
         min_abs_weight=config.preconditioner_min_abs_weight,
         error_model=config.error_model,

@@ -28,6 +28,8 @@ class ModularSolveConfig:
     maxiter: int = 35
     seed: int = 7
     max_light_cone_size: int | None = None
+    preconditioner_use_pcut: bool = False
+    preconditioner_shots: int = 0
     error_model: Literal["ideal", "ankaa3", "ankaa3_hardware"] = "ideal"
     error_model_specs_path: str = "Ankaa-3_device_specs.csv"
     error_model_layout_seed: int = 0

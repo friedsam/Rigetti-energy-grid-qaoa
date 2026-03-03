@@ -382,6 +382,7 @@ def simulate_circuit_probabilities_with_error_model(
     error_model: str,
     specs_path: str = DEFAULT_ANKAA3_SPECS_PATH,
     layout_seed: int = 0,
+    shots: int = 0,
 ) -> tuple[np.ndarray, float]:
     from qiskit.quantum_info import Statevector
 
@@ -413,11 +414,27 @@ def simulate_circuit_probabilities_with_error_model(
         str(specs_path),
         int(layout_seed),
     )
+    shot_count = max(0, int(shots))
     run_circuit = circuit.copy()
-    run_circuit.save_probabilities()
-    result = simulator.run(run_circuit).result()
-    probabilities = np.asarray(result.data(0)["probabilities"], dtype=float)
-    total = float(np.sum(probabilities))
+    if shot_count > 0:
+        run_circuit.measure_all()
+        result = simulator.run(run_circuit, shots=shot_count).result()
+        counts = result.get_counts(0)
+        basis_size = max(1, 1 << max(0, int(num_qubits)))
+        probabilities = np.zeros(basis_size, dtype=float)
+        total = 0.0
+        for bitstring, count in counts.items():
+            key = str(bitstring).replace(" ", "")
+            if not key:
+                continue
+            probabilities[int(key, 2)] += float(count)
+            total += float(count)
+    else:
+        run_circuit.save_probabilities()
+        result = simulator.run(run_circuit).result()
+        probabilities = np.asarray(result.data(0)["probabilities"], dtype=float)
+        total = float(np.sum(probabilities))
+
     if not math.isfinite(total) or total <= 0.0:
         basis_size = max(1, len(probabilities))
         probabilities = np.full(basis_size, 1.0 / basis_size, dtype=float)

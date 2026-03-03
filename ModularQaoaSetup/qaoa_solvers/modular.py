@@ -1,3 +1,11 @@
+"""Top-level orchestration for the modular QAOA and hybrid block solver.
+
+This module turns a graph plus a high-level configuration into the partitioned
+solve pipeline used by the rest of the package. It selects the partitioning
+strategy, wires in the requested block updater, and routes whole-graph hybrid
+preconditioning through the dedicated preconditioned solver path.
+"""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -18,6 +26,7 @@ from .hyperparameters import (
 
 @dataclass(frozen=True)
 class ModularSolveConfig:
+    """Configuration for partitioning, quantum subsolvers, and fallback heuristics."""
     partition_strategy: str = "multilevel"
     region_optimizer: str = "hybrid_preconditioned"
     boundary_optimizer: str = "hybrid_preconditioned"
@@ -67,12 +76,14 @@ class ModularSolveConfig:
 
 
 def available_partitioning_strategies() -> tuple[str, ...]:
+    """Return the partitioning strategy names accepted by ``partition_strategy``."""
     from ..partitioning_methods.strategies import available_partition_strategies
 
     return available_partition_strategies()
 
 
 def available_optimization_strategies() -> tuple[str, ...]:
+    """Return the block-optimizer names accepted by region and boundary settings."""
     return (
         "skip",
         "exact",
@@ -85,6 +96,7 @@ def available_optimization_strategies() -> tuple[str, ...]:
 
 
 def available_error_models() -> tuple[str, ...]:
+    """Return the supported error-model identifiers for quantum subroutines."""
     return ("ideal", "ankaa3", "ankaa3_hardware")
 
 
@@ -164,6 +176,7 @@ def _make_hybrid_preconditioned_updater(
 
 
 def get_block_updater(strategy: str, config: ModularSolveConfig) -> BlockUpdater | None:
+    """Translate a strategy label into the callable used by block coordinate descent."""
     normalized = strategy.strip().lower()
     if normalized == "skip":
         return None
@@ -247,6 +260,7 @@ def solve_graph_modular(
     name: str,
     config: ModularSolveConfig | None = None,
 ):
+    """Solve a graph with the modular pipeline or defer to the whole-graph hybrid path."""
     from .core import SolveResult, chunked_exact_cut
 
     config = ModularSolveConfig() if config is None else config

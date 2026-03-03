@@ -1,0 +1,181 @@
+node,spin,partition,region_id,region_category,method,qc_name,fixed_from_existing_result,total_cut_value
+0,1,left,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+1,-1,right,R01,classical,cvxpy,classical,False,7071.1081968920225
+2,-1,right,R02,classical,cvxpy,classical,False,7071.1081968920225
+3,1,left,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+4,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+5,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+6,-1,right,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+7,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+8,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+9,1,left,R01,classical,cvxpy,classical,False,7071.1081968920225
+10,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+11,-1,right,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+12,1,left,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+13,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+14,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+15,-1,right,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+16,1,left,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+17,1,left,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+18,1,left,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+19,1,left,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+20,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+21,-1,right,R02,classical,cvxpy,classical,False,7071.1081968920225
+22,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+23,1,left,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+24,1,left,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+25,-1,right,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+26,-1,right,R01,classical,cvxpy,classical,False,7071.1081968920225
+27,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+28,1,left,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+29,1,left,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+30,-1,right,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+31,1,left,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+32,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+33,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+34,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+35,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+36,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+37,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+38,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+39,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+40,-1,right,R02,classical,cvxpy,classical,False,7071.1081968920225
+41,1,left,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+42,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+43,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+44,-1,right,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+45,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+46,1,left,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+47,1,left,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+48,-1,right,R01,classical,cvxpy,classical,False,7071.1081968920225
+49,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+50,-1,right,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+51,-1,right,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+52,1,left,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+53,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+54,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+55,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+56,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+57,-1,right,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+58,1,left,R01,classical,cvxpy,classical,False,7071.1081968920225
+59,1,left,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+60,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+61,1,left,R10,classical,cvxpy,classical,False,7071.1081968920225
+62,1,left,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+63,-1,right,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+64,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+65,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+66,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+67,-1,right,R01,classical,cvxpy,classical,False,7071.1081968920225
+68,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+69,1,left,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+70,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+71,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+72,1,left,R01,classical,cvxpy,classical,False,7071.1081968920225
+73,1,left,R02,classical,cvxpy,classical,False,7071.1081968920225
+74,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+75,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+76,1,left,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+77,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+78,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+79,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+80,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+81,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+82,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+83,-1,right,R01,classical,cvxpy,classical,False,7071.1081968920225
+84,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+85,-1,right,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+86,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+87,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+88,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+89,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+90,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+91,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+92,1,left,R10,classical,cvxpy,classical,False,7071.1081968920225
+93,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+94,1,left,R10,classical,cvxpy,classical,False,7071.1081968920225
+95,-1,right,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+96,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+97,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+98,-1,right,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+99,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+100,1,left,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+101,1,left,R02,classical,cvxpy,classical,False,7071.1081968920225
+102,-1,right,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+103,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+104,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+105,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+106,-1,right,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+107,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+108,-1,right,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+109,1,left,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+110,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+111,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+112,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+113,1,left,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+114,-1,right,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+115,1,left,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+116,1,left,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+117,1,left,R01,classical,cvxpy,classical,False,7071.1081968920225
+118,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+119,1,left,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+120,1,left,R01,classical,cvxpy,classical,False,7071.1081968920225
+121,-1,right,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+122,1,left,R10,classical,cvxpy,classical,False,7071.1081968920225
+123,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+124,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+125,-1,right,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+126,-1,right,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+127,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+128,1,left,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+129,1,left,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+130,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+131,1,left,R06,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+132,-1,right,R02,classical,cvxpy,classical,False,7071.1081968920225
+133,-1,right,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+134,1,left,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+135,-1,right,R01,classical,cvxpy,classical,False,7071.1081968920225
+136,-1,right,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+137,-1,right,R04,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+138,1,left,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+139,-1,right,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+140,1,left,R10,classical,cvxpy,classical,False,7071.1081968920225
+141,-1,right,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+142,1,left,R01,classical,cvxpy,classical,False,7071.1081968920225
+143,1,left,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+144,1,left,R02,classical,cvxpy,classical,False,7071.1081968920225
+145,-1,right,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+146,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+147,1,left,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+148,-1,right,R08,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+149,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+150,-1,right,R00,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+151,-1,right,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+152,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+153,1,left,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+154,1,left,R12,classical,cvxpy,classical,False,7071.1081968920225
+155,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+156,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+157,-1,right,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+158,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+159,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+160,1,left,R13,qaoa,cvxpy,classical,False,7071.1081968920225
+161,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+162,-1,right,R03,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+163,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+164,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+165,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+166,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+167,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+168,-1,right,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+169,-1,right,R10,classical,cvxpy,classical,False,7071.1081968920225
+170,1,left,R05,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+171,-1,right,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225
+172,1,left,R02,classical,cvxpy,classical,False,7071.1081968920225
+173,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+174,1,left,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+175,-1,right,R12,classical,cvxpy,classical,False,7071.1081968920225
+176,-1,right,R11,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+177,1,left,R14,qaoa,cvxpy,classical,False,7071.1081968920225
+178,1,left,R07,quantum preconditioning,cvxpy,classical,False,7071.1081968920225
+179,1,left,R09,qaoa,qaoa,Ankaa-3,True,7071.1081968920225

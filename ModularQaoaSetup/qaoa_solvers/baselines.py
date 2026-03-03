@@ -482,6 +482,7 @@ def optimize_standard_qaoa(
     error_model: str = "ideal",
     error_model_specs_path: str = "Ankaa-3_device_specs.csv",
     error_model_layout_seed: int = 0,
+    shots: int = 0,
     optimizer_config: StandardQAOAOptimizerConfig | None = None,
 ) -> Tuple[np.ndarray, Statevector]:
     optimizer_config = StandardQAOAOptimizerConfig() if optimizer_config is None else optimizer_config
@@ -509,6 +510,7 @@ def optimize_standard_qaoa(
             error_model=error_model,
             specs_path=error_model_specs_path,
             layout_seed=error_model_layout_seed,
+            shots=shots,
         )
         return -_qaoa_objective(probabilities, pair_weights, fields)
 
@@ -565,6 +567,7 @@ def optimize_standard_qaoa(
             error_model=error_model,
             specs_path=error_model_specs_path,
             layout_seed=error_model_layout_seed,
+            shots=shots,
         )
         value = _qaoa_objective(probabilities, pair_weights, fields)
         if value > best_value:

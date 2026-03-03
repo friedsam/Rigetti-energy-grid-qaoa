@@ -1,0 +1,16 @@
+region_id,region_category,node_count,method,qc_name,internal_cut_value,fixed_from_existing_result,generated_by_cvxpy,output_csv
+R00,qaoa,8,qaoa,Ankaa-3,229.90171765186003,True,False,challenge_region00_result.csv
+R01,classical,12,cvxpy,classical,373.40635875656403,False,True,challenge_region01_result.csv
+R02,classical,8,cvxpy,classical,303.365910513524,False,True,challenge_region02_result.csv
+R03,qaoa,9,qaoa,Ankaa-3,303.49078622797003,True,False,challenge_region03_result.csv
+R04,quantum preconditioning,24,cvxpy,classical,754.00108567992,False,True,challenge_region04_result.csv
+R05,quantum preconditioning,15,cvxpy,classical,518.435276680937,False,True,challenge_region05_result.csv
+R06,quantum preconditioning,11,cvxpy,classical,502.147153380905,False,True,challenge_region06_result.csv
+R07,quantum preconditioning,21,cvxpy,classical,928.0345220290552,False,True,challenge_region07_result.csv
+R08,qaoa,7,qaoa,Ankaa-3,286.032937159588,True,False,challenge_region08_result.csv
+R09,qaoa,9,qaoa,Ankaa-3,250.070388302281,True,False,challenge_region09_result.csv
+R10,classical,12,cvxpy,classical,362.114822961099,False,True,challenge_region10_result.csv
+R11,quantum preconditioning,13,cvxpy,classical,654.2180992374339,False,True,challenge_region11_result.csv
+R12,classical,14,cvxpy,classical,445.17730047464204,False,True,challenge_region12_result.csv
+R13,qaoa,7,cvxpy,classical,281.391355206202,False,True,challenge_region13_result.csv
+R14,qaoa,10,cvxpy,classical,473.68726540741795,False,True,challenge_region14_result.csv

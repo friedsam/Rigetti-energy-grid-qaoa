@@ -27,6 +27,8 @@ class ModularSolveConfig:
     restarts: int = 3
     maxiter: int = 35
     seed: int = 7
+    warm_start_assignment: Dict[int, int] | None = None
+    preconditioning_mode: Literal["bcd", "global_bm_step"] = "bcd"
     max_light_cone_size: int | None = None
     preconditioner_use_pcut: bool = False
     preconditioner_shots: int = 0

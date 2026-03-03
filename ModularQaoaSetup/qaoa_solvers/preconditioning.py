@@ -319,7 +319,89 @@ def solve_graph_quantum_preconditioned(
     schedule = build.schedule
     working_graph = build.graph
 
-    assignment = initial_assignment(working_graph, config.seed)
+    mode = getattr(config, "preconditioning_mode", "bcd").strip().lower()
+    if mode not in {"bcd", "global_bm_step"}:
+        raise ValueError(f"Unknown preconditioning_mode: {mode}")
+
+    # --- Mode: QAOA-preconditioned working graph + ONE global BM step (no BCD) ---
+    if mode == "global_bm_step":
+        # base assignment: warm start if provided, else random init on ORIGINAL graph
+        if getattr(config, "warm_start_assignment", None) is not None:
+            base_assignment = {int(u): int(config.warm_start_assignment[int(u)]) for u in graph.nodes()}
+        else:
+            base_assignment = initial_assignment(graph, config.seed)
+
+        base_score = float(weighted_cut_value(graph, base_assignment))
+
+        # propose a global BM move on the WORKING (QAOA-preconditioned) graph
+        proposed = burer_monteiro_refine(
+            working_graph,
+            base_assignment,
+            blocks=None,  # key: global step
+            rank=config.bm_rank,
+            steps=config.bm_steps,
+            learning_rate=config.bm_learning_rate,
+            rounding_trials=max(64, config.bm_rounding_trials),  # cheap strength bump
+            seed=config.seed,
+        )
+        proposed_score = float(weighted_cut_value(graph, proposed))
+
+        # accept only if it improves the TRUE objective
+        assignment = proposed if proposed_score > base_score else base_assignment
+
+        record_checkpoint(weighted_cut_value(graph, assignment), label="global_bm_step")
+
+        # Keep existing original-graph polish (this is consistent with your current solver)
+        if config.preconditioning_backend.strip().lower() == "burer_monteiro":
+            assignment = burer_monteiro_refine(
+                graph,
+                assignment,
+                rank=config.bm_rank,
+                steps=max(12, config.bm_steps),
+                learning_rate=config.bm_learning_rate,
+                rounding_trials=max(12, config.bm_rounding_trials),
+                seed=config.seed + 9000,
+            )
+            record_checkpoint(weighted_cut_value(graph, assignment), label="original_bm_polish")
+
+        assignment = greedy_refine(graph, assignment, seed=config.seed + 10000)
+        record_checkpoint(weighted_cut_value(graph, assignment), label="original_greedy_polish")
+
+        exact_cut_value = None
+        if graph.number_of_nodes() <= config.exact_threshold:
+            exact_cut_value, exact_assignment = chunked_exact_cut(graph)
+            if config.allow_exact_postcheck and exact_cut_value > weighted_cut_value(graph, assignment):
+                assignment = exact_assignment
+
+        blocks = list(schedule.layout.regions) if schedule.layout is not None else list(schedule.region_blocks)
+        coarse_nodes = 0 if schedule.layout is None else schedule.layout.coarse_graph.number_of_nodes()
+        boundary_nodes = 0 if schedule.layout is None else len(schedule.layout.boundary_nodes)
+
+        return SolveResult(
+            name=name,
+            graph=graph,
+            assignment=assignment,
+            blocks=blocks,
+            rounds_run=0,
+            cut_value=weighted_cut_value(graph, assignment),
+            ising_energy=ising_energy(graph, assignment),
+            exact_cut_value=exact_cut_value,
+            coarse_nodes=coarse_nodes,
+            boundary_nodes=boundary_nodes,
+            boundary_blocks=len(schedule.boundary_blocks),
+            strategy=(
+                f"{config.partition_strategy}:"
+                f"standard_qaoa_preconditioned_global_bm_step"
+                f"[pairs={build.correlated_pairs},cones={build.light_cone_evaluations}]"
+            ),
+        )
+
+    #assignment = initial_assignment(working_graph, config.seed)
+    if getattr(config, "warm_start_assignment", None) is not None:
+        assignment = {int(u): int(config.warm_start_assignment[int(u)]) for u in working_graph.nodes()}
+    else:
+        assignment = initial_assignment(working_graph, config.seed)
+    baseline_score = weighted_cut_value(graph, assignment)
     backend = config.preconditioning_backend.strip().lower()
     if backend not in {"simulated_annealing", "burer_monteiro", "greedy"}:
         raise ValueError(f"Unknown preconditioning backend: {config.preconditioning_backend}")
@@ -457,6 +539,9 @@ def solve_graph_quantum_preconditioned(
     coarse_nodes = 0 if schedule.layout is None else schedule.layout.coarse_graph.number_of_nodes()
     boundary_nodes = 0 if schedule.layout is None else len(schedule.layout.boundary_nodes)
 
+    final_score = weighted_cut_value(graph, assignment)
+    delta = final_score - baseline_score
+
     return SolveResult(
         name=name,
         graph=graph,
@@ -471,7 +556,9 @@ def solve_graph_quantum_preconditioned(
         boundary_blocks=len(schedule.boundary_blocks),
         strategy=(
             f"{config.partition_strategy}:"
-            f"standard_qaoa_preconditioned_{backend}"
-            f"[pairs={build.correlated_pairs},cones={build.light_cone_evaluations}]"
-        ),
+            f"standard_qaoa_preconditioned"
+            f"[pairs={build.correlated_pairs},"
+            f"cones={build.light_cone_evaluations},"
+            f"Δ={delta:.3f}]"
+        ),  
     )

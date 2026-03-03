@@ -254,6 +254,8 @@ The graph with a significant portion run through QAOA on hardware achieved 99.6%
 
 Overall, these results are highly encouraging and indicate potential for this idea to be further extended in the future with more variants of QAOA.
 
+The overall results are available in the results folder.
+
 ## 5 Notes on the Repository
 
 Notebooks containing simulator based QAOA and partitioning are available in notebooks. The notebooks used on the real hardware are in the folder indicating real hardware. The error mitigation part of the repository wasn't used as none of the error was strong enough to warrant the extra computational cost, but we thought it was really cool. It is based on Q-Ctrl's Fire Opal. Currently, the pulse level is not functional but the rest can be wired into the modular QAOA solver. It implements Zero Noise Estimation and a host of compilation techniques to mitigate and supress error. It was built to take in the calibration data from Ankaa-3. It is probably somewhat broken now due to merge conflicts.

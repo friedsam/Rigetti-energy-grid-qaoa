@@ -12,7 +12,7 @@ For a graph with:
 
 - $N$ nodes  
 - $E$ edges  
-- QAOA depth - $p$ 
+- QAOA depth $p$ 
 
 The conventional one-node-per-qubit encoding requires:
 
